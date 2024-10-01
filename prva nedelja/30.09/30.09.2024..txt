@@ -1,0 +1,124 @@
+jupiter notebook
+seminarski rad 70 poena u pythonu. Moramo da ga branimo preko prezentacije.
+mogu online konsultacije ili kabinet 112.
+mozemo bilo kad predati seminarski.
+podesta ga da updejtuje prezentacije
+permutacije, kombinacije pogledaj mozda il nem pojma
+
+import random
+
+lista1="proba"
+lista1=list(lista1)
+print(f'pre :{lista1}')
+random.shuffle(lista1)
+print(lista1)
+
+random.random();
+random.randrange();
+random.randint();
+
+str='computer'
+print(f'{random.choice(str)}')
+
+print(f'{random.choice([12, 16, 19, 23])}')
+
+prepoznati tip podataka na kolokvijumu npr. binarni podaci (da, ne)
+diskretni podaci(broj studenata, broj kisnih dana u mesecu) (mogu postojati rupe) int
+neprekidni podaci(vreme provedeno spremajuci se za neki ispit, visina studenata) float
+
+tabela frekvencija
+primer:
+1,1,2,3,3,4,5,5,2
+
+tabela apsolutnih frekvencija-u ovom obliku mogu da se pokazu i kategoricki podaci(koliko muskaraca, zena)
+ocene broj
+1	2
+2	2
+3	2
+.
+.
+.
+
+
+relativna frekvencija 
+2/9
+2/9
+2/9
+.
+.
+.
+
+apsolutne frekvencije - pronadji pojasnjenje !
+8
+11
+14
+10
+7
+
+pandas.read_excel cemo vrv koristiti
+
+
+pandas.DataFrame.to_excel kao tabele
+pandas.DataSeries
+
+sidetable-za generisanje tabela frekvencija
+
+vodostaj    |	frekvencija
+n		15
+s		12
+v		31
+
+pandas, request, sidetable, numpy, openpyxl ili csv da instaliramo
+
+dataframe je tabelarni tip podatka
+
+import pandas as pd
+import requests
+import sidetable as stb
+
+url="https://people.vts.su.ac.rs/~papzoli/SAP/Podaci/prosecan-vodostaj.xlsx"
+
+s=requests.get(url)
+with open('vodostaj.xlsx','wb') as file:
+    file.write(s.content)
+
+df=pd.read_excel('vodostaj.xlsx',header=None, names=['Vodostaj'])
+print(df)
+print(df.info())
+
+# print(df.head(10))
+
+# freq_table1=pd.pivot_table(df, index=[0],aggfunc='size')
+# print(freq_table1)
+
+ocene broj kumulativna frekvencija
+1	2  2
+2	2  4
+3	2  6
+.
+.
+.
+
+Visina 	    |   Broj studenata
+[150-160]	15
+[160-170]	2
+
+qcut - proveri sta je !
+
+import pandas as pd
+import requests
+import sidetable as stb
+
+url="https://people.vts.su.ac.rs/~papzoli/SAP/Podaci/nivo-secera.csv"
+
+s=requests.get(url)
+with open('nivo-secera.csv','wb') as file:
+    file.write(s.content)
+
+df=pd.read_csv('nivo-secera.csv')
+print(df)
+print(df.info())
+freq_table=df.stb.freq(['Binned'])
+print(freq_table)
+
+sidetable se uglavnom koristi za tabele frekvencija
